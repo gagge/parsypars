@@ -6,7 +6,7 @@ import { InvoicePeriodModel } from './interfaces.d';
 export default class Parse {
 	path:string;
 	vendor:string;
-	driverPath	:string;
+	driverPath:string;
 	driver:any;
 
 	constructor(vendor:string, path:string) {
@@ -38,10 +38,7 @@ export default class Parse {
 	async import():Promise<void> {
 		await this.validate();
 		await this.loadDriver();
-
-		this.readFile()
-			.then(() => { return })
-			.catch((err) => { throw err });
+		await this.readFile();
 	}
 
 	readFile():Promise<string> {
@@ -49,6 +46,8 @@ export default class Parse {
 			const invoice = new Invoice();
 
 			fs.readFile(this.path, async (err, data) => {
+				if (err) reject(err);
+
 				const rawData:string = data.toString();
 				const invoicePeriod:InvoicePeriodModel = this.driver.getInvoicePeriod(rawData);
 				const invoiceData:InvoiceModel = {
@@ -64,8 +63,6 @@ export default class Parse {
 					flowPrice: this.driver.getFlowPrice(rawData),
 					currency:this.driver.getCurrency()
 				};
-
-				if (err) reject(err);
 
 				await invoice.save(invoiceData);
 				resolve();
