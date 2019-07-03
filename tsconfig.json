@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "lib": ["es6", "es2015", "dom"],
+        "strict": true,
+        "types": ["node"],
+        "module": "commonjs",
+        "outDir": "lib",
+        "rootDir": "src",
+        "watch": false,
+        "esModuleInterop": true,
+        "resolveJsonModule": true
+    }
+}
