@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import Invoice from './invoice.js';
+import Invoice from './invoice';
 import { InvoiceModel } from './interfaces.d';
 import { InvoicePeriodModel } from './interfaces.d';
 

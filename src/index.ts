@@ -1,10 +1,10 @@
-import Parse from './models/parse.js';
+import Parse from './models/parse';
 
 const args:string[] = process.argv.slice(2);
 
 if (args.length < 2) {
 	console.log('Error: Not enough arguments given');
-	process.exit();
+	process.exit(1);
 }
 
 async function run() {
